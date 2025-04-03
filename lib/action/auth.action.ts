@@ -47,9 +47,12 @@ export async function signIn(params: SignInParams) {
 
 async function setSessionCookie(idtoken: string) {
   const cookieStore = await cookies();
+  console.log("cookie storee", cookieStore);
   const sessionCookie = await auth.createSessionCookie(idtoken, {
     expiresIn: oneWeek,
   });
+
+  console.log(sessionCookie);
 
   cookieStore.set("session", sessionCookie, {
     maxAge: oneWeek,
@@ -75,7 +78,6 @@ export async function getCurrentUser(): Promise<User | null> {
       .get();
 
     if (!userRecord.exists) return null;
-    console.log(userRecord);
 
     return {
       ...userRecord.data(),
