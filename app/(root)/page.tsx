@@ -19,10 +19,6 @@ export default async function Home() {
   const hasPastInterview = userInterviews?.length! > 0;
   const hasUpComingInterviews = latestInterviews?.length! > 0;
 
-  console.log("userInterview", userInterviews);
-  console.log("latest"), latestInterviews;
-  console.log("hasPastInterviews", hasPastInterview);
-  console.log("hasUUpcoomign", hasUpComingInterviews);
   return (
     <>
       <section className="card-cta">
