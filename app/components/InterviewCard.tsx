@@ -4,8 +4,9 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import DisplayTechIcons from "./DisplayTechIcons";
+import { getFeedBackByInterviewId } from "@/lib/action/general.action";
 
-const InterviewCard = ({
+const InterviewCard = async ({
   id,
   userId,
   techstack,
@@ -13,7 +14,10 @@ const InterviewCard = ({
   type,
   createdAt,
 }: InterviewCardProps) => {
-  const feedback = null as Feedback | null;
+  const feedback =
+    userId && id
+      ? await getFeedBackByInterviewId({ interviewId: id, userId })
+      : null;
   const normalizeType = /mix/gi.test(type) ? "Mixed" : "technical";
   const formattedDate = dayjs(
     feedback?.createdAt || createdAt || Date.now()
