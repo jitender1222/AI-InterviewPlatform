@@ -76,10 +76,9 @@ export async function getFeedBackByInterviewId(
   const feedback = await db
     .collection("feedback")
     .where("interviewId", "==", interviewId)
-    .where("userId", "==", userId)
     .limit(1)
     .get();
-
+  console.log("feed", userId);
   if (feedback.empty) return null;
 
   const feedbackDoc = feedback.docs[0];
