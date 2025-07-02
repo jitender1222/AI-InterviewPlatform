@@ -40,6 +40,7 @@ export async function signIn(params: SignInParams) {
       };
     }
     await setSessionCookie(idToken);
+    console.log("idToken", idToken);
   } catch (error) {
     console.log("Error while signing up the user", error);
   }
@@ -71,6 +72,7 @@ export async function getCurrentUser(): Promise<User | null> {
 
   try {
     const decodedCookie = await auth.verifySessionCookie(sessionCookie, true);
+    console.log("decoded", decodedCookie);
 
     const userRecord = await db
       .collection("users")
